@@ -60,7 +60,7 @@ jobs:
             command: |
               kubectl apply -f /tmp/workspace/deployment/gke/              
 workflows:
-  version: 2
+  version: 2.1
   build-and-deploy:
     jobs:
       - build-api:

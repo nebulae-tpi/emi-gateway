@@ -1,6 +1,6 @@
 {
   "name": "@nebulaengineering/emi-gateway",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Microservices EMI API Gateway",
   "main": "server.js",
   "scripts": {

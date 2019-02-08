@@ -68,7 +68,7 @@ workflows:
       - build-api:
           context: TPI
           name: build-api-dev
-          requires:
+          #requires:
           #  - hold-dev
       - build-docker:
           context: TPI

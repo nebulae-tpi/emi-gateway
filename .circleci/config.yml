@@ -83,6 +83,8 @@ workflows:
       - build-api:
           context: TPI_PROD
           name: build-api-prod
+          requires:
+            - hold
       - build-docker:
           context: TPI_PROD
           name: build-docker-prod
@@ -92,5 +94,4 @@ workflows:
           context: TPI_PROD
           name: deploy-dev-prod
           requires: # We only run the "hold" job when test2 has succeeded
-            - hold
             - build-docker-prod

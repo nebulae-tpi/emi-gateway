@@ -32,6 +32,15 @@ class PubSubBroker {
         });
         //lets start listening to messages
         this.startMessageListener();
+        this.testMessages();
+    }
+
+    testMessages(){
+        this.replies$
+        .subscribe(data => {
+            console.log('Received message', new Date(), JSON.parse(data));
+            console.log('****************************');
+        })
     }
 
     /**
@@ -234,11 +243,7 @@ class PubSubBroker {
         .subscribe(
             ({ subscription, topicName, subscriptionName }) => {
                 subscription.on(`message`, message => {
-
-                    console.log('********* ', subscriptionName, '************');
-                    console.log('Received message', new Date(), topicName, message.attributes.correlationId, JSON.parse(message.data));
-                    console.log('****************************');
-                    
+                    //console.log('Received message', new Date(), topicName, message.attributes.correlationId, JSON.parse(message.data));
                     this.replies$.next(
                         {
                             topic: topicName,

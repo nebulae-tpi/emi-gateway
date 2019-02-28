@@ -139,7 +139,7 @@ class PubSubBroker {
                         
                     // )
                 ),
-                tap(messageId => console.log(`Message published through ${topicName}, MessageId=${messageId}`, new Date()))
+                tap(messageId => console.log(`Message published through ${topicName}, MessageId =${messageId}`, new Date()))
             );
     }
 

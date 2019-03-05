@@ -1,7 +1,7 @@
 'use strict'
 
 const { map, switchMap, filter, first, timeout, mergeMap, tap} = require('rxjs/operators');
-const { Subject, of, from, defer } = require('rxjs');
+const { Subject, of, from, defer, ReplaySubject } = require('rxjs');
 const uuidv4 = require('uuid/v4');
 
 class PubSubBroker {
@@ -19,7 +19,7 @@ class PubSubBroker {
         /**
          * Rx Subject for every message reply
          */
-        this.replies$ = new Subject();
+        this.replies$ = new ReplaySubject(5);
         this.senderId = uuidv4();
         /**
          * Map of verified topics

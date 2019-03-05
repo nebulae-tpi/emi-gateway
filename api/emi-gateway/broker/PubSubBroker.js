@@ -19,7 +19,7 @@ class PubSubBroker {
         /**
          * Rx Subject for every message reply
          */
-        this.replies$ = new ReplaySubject(5);
+        this.replies$ = new ReplaySubject(20);
         this.senderId = uuidv4();
         /**
          * Map of verified topics

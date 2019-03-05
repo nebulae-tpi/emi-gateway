@@ -1,7 +1,7 @@
 'use strict'
 
 const { map, switchMap, filter, first, timeout, mergeMap, tap} = require('rxjs/operators');
-const { Subject, of, from, defer } = require('rxjs');
+const { Subject, of, from, defer, ReplaySubject } = require('rxjs');
 const uuidv4 = require('uuid/v4');
 
 class PubSubBroker {
@@ -19,7 +19,7 @@ class PubSubBroker {
         /**
          * Rx Subject for every message reply
          */
-        this.replies$ = new Subject();
+        this.replies$ = new ReplaySubject(20);
         this.senderId = uuidv4();
         /**
          * Map of verified topics
@@ -32,16 +32,8 @@ class PubSubBroker {
         });
         //lets start listening to messages
         this.startMessageListener();
-        this.testMessages();
     }
 
-    testMessages(){
-        this.replies$
-        .subscribe(data => {
-            console.log('Received message', new Date(), JSON.parse(data));
-            console.log('****************************');
-        })
-    }
 
     /**
      * Forward the Graphql query/mutation to the Microservices
@@ -83,7 +75,7 @@ class PubSubBroker {
     * @param {number} timeoutLimit 
     */
     getMessageReply$(correlationId, timeoutLimit = this.replyTimeout, ignoreSelfEvents = true) {
-        //console.log('getMessageReply$ => data: ', new Date());
+        //console.log('getMessageReply$', new Date(), "=>",correlationId);
         return this.replies$
         .pipe(
             filter(msg => msg),
@@ -139,7 +131,7 @@ class PubSubBroker {
                         
                     // )
                 ),
-                tap(messageId => console.log(`Message published through ${topicName}, MessageId =${messageId}`, new Date()))
+                //tap(messageId => console.log(`Message published through ${topicName}, MessageId=${messageId}`, new Date()))
             );
     }
 
@@ -243,7 +235,7 @@ class PubSubBroker {
         .subscribe(
             ({ subscription, topicName, subscriptionName }) => {
                 subscription.on(`message`, message => {
-                    //console.log('Received message', new Date(), topicName, message.attributes.correlationId, JSON.parse(message.data));
+                    //console.log('Received message response', new Date(), topicName, message.attributes.correlationId);
                     this.replies$.next(
                         {
                             topic: topicName,

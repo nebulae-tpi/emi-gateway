@@ -74,7 +74,7 @@ class PubSubBroker {
     * @param {number} timeoutLimit 
     */
     getMessageReply$(correlationId, timeoutLimit = this.replyTimeout, ignoreSelfEvents = true) {
-        //console.log('getMessageReply$ => data: ', new Date());
+        console.log('getMessageReply$', new Date(), "=>",correlationId);
         return this.replies$
         .pipe(
             filter(msg => msg),
@@ -234,7 +234,7 @@ class PubSubBroker {
         .subscribe(
             ({ subscription, topicName, subscriptionName }) => {
                 subscription.on(`message`, message => {
-                    //console.log('Received message', new Date(), topicName, message.attributes.correlationId, JSON.parse(message.data));
+                    console.log('Received message response', new Date(), topicName, message.attributes.correlationId);
                     this.replies$.next(
                         {
                             topic: topicName,

@@ -14,6 +14,7 @@ const resolversArray = fileLoader(
 );
 
 
+
 module.exports = {
     types: mergeTypes(typesArray, { all: true }),
     resolvers: mergeResolvers(resolversArray)

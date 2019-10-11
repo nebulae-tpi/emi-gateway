@@ -13,6 +13,7 @@ const resolversArray = fileLoader(
     { extensions: ['.js'], recursive: true }
 );
 
+
 module.exports = {
     types: mergeTypes(typesArray, { all: true }),
     resolvers: mergeResolvers(resolversArray)

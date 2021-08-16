@@ -63,11 +63,11 @@ class PubSubBroker {
     forwardAndGetReply$(topic, type, payload, timeout = this.replyTimeout, ignoreSelfEvents = true, ops) {
         return this.forward$(topic, type, payload, ops)
             .pipe(
-                tap((messageId) => {if(type==="emigateway.graphql.query.myBusiness"){
+                tap((messageId) => {if(type==="emigateway.graphql.query.getBusinesses"){
                     console.log('===> send:',messageId,Date.now());
                 }}),
                 switchMap((messageId) => this.getMessageReply$(messageId, timeout, ignoreSelfEvents)),
-                tap(() => {if(type==="emigateway.graphql.query.myBusiness"){
+                tap(() => {if(type==="emigateway.graphql.query.getBusinesses"){
                     console.log('===> replySent:',Date.now());
                 }})
             );

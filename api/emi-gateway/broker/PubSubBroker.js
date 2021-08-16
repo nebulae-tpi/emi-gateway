@@ -241,7 +241,8 @@ class PubSubBroker {
         .subscribe(
             ({ subscription, topicName, subscriptionName }) => {
                 subscription.on(`message`, message => {
-                    console.log('Received message response', Date.now(), topicName,message.attributes.type, message.attributes.correlationId);
+                    if(topicName==='emi-gateway-replies')
+                    console.log('Received message response', topicName, message.attributes.correlationId,  Date.now());
                     this.replies$.next(
                         {
                             topic: topicName,

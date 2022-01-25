@@ -3,7 +3,7 @@ const GraphQLJSON = require('graphql-type-json');
 
 module.exports = {
     BigInt: bigInt,
-    JSON: GraphQLJSO
+    JSON: GraphQLJSON
     
 }
 

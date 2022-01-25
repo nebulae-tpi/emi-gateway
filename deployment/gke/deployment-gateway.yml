@@ -14,7 +14,7 @@ spec:
   selector:
     run: api-emi-gateway
 ---
-apiVersion: extensions/v1beta1
+apiVersion: extensions/v1
 kind: Deployment
 metadata:
   name: api-emi-gateway

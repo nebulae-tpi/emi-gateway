@@ -19,6 +19,9 @@ kind: Deployment
 metadata:
   name: api-emi-gateway
 spec:
+  selector:
+    matchLabels:
+      run: api-emi-gateway
   replicas: 1
   template:
     metadata:

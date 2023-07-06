@@ -6,5 +6,5 @@ module.exports = {
     BigInt: bigInt,
     JSON: GraphQLJSON
     
-} 
+}  
 

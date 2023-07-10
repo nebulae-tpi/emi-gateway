@@ -8,7 +8,7 @@ module.exports = {
     author(_, { firstName, lastName }, context, info) {
       return { id: '1233', firstName, lastName, age:  23};
     },
-  },
+  }, 
   Mutation: {
     createAuthor: (root, args, context, info) => {
       const authorAdded = { id: Math.random(), firstName: args.firstName, lastName: args.lastName };

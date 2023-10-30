@@ -4,7 +4,7 @@ type Author {
   lastName: String
   age: BigInt
 }
-
+ 
 type AuthorEvent {
   id: Int! # the ! means that every author object _must_ have an id
   timestamp: String

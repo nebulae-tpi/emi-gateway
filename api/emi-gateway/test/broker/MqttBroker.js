@@ -11,7 +11,7 @@ const MqttBroker = require('../../broker/MqttBroker');
 let mqttBroker = {};
 let payload = { a: 1, b: 2, c: 3 };
 
-
+ 
 /*
 NOTES:
 before run please start mqtt:

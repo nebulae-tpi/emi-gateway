@@ -1,7 +1,7 @@
 'use strict';
 
 let instance = null;
-class BrokerFactory {
+class BrokerFactory { 
   constructor() {
     //Service Port
     const BROKER_TYPE = process.env.BROKER_TYPE || 'PUBSUB';
